@@ -1,0 +1,18 @@
+use strict;
+use inc::Module::Install;
+name 'POE-Component-Server-Echo';
+author 'Chris Williams <chris@bingosnet.co.uk>';
+license 'perl';
+version_from 'lib/POE/Component/Server/Echo.pm';
+abstract_from 'lib/POE/Component/Server/Echo.pm';
+build_requires 'Test::More' => 0.47;
+requires 'warnings::compat' => 0 if $] < 5.006;
+requires 'Carp'   => 0;
+requires 'Socket' => 0;
+requires 'IO::Socket::INET' => 0;
+requires 'POE' => 0.38;
+requires 'POE::Wheel::SocketFactory' => 0;
+requires 'POE::Wheel::ReadWrite' => 0;
+requires 'POE::Driver::SysRW' => 0;
+requires 'POE::Filter::Line' => 0;
+WriteAll();
