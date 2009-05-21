@@ -1,9 +1,11 @@
 Changes
 examples/simple-echo-server.pl
 inc/Module/Install.pm
+inc/Module/Install/AutoLicense.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
 inc/Module/Install/Fetch.pm
+inc/Module/Install/GithubMeta.pm
 inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
@@ -19,4 +21,3 @@ t/01_tcp.t
 t/02_udp.t
 t/99_pod.t
 t/99_pod_coverage.t
-

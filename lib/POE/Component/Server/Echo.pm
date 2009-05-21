@@ -21,7 +21,7 @@ use vars qw($VERSION);
 use constant DATAGRAM_MAXLEN => 1024;
 use constant DEFAULT_PORT => 7;
 
-$VERSION = '1.62';
+$VERSION = '1.64';
 
 sub spawn {
   my $package = shift;
@@ -180,13 +180,13 @@ POE::Component::Server::Echo - A POE component that implements an RFC 862 Echo s
 =head1 DESCRIPTION
 
 POE::Component::Server::Echo implements a RFC 862 L<http://www.faqs.org/rfcs/rfc862.html> TCP/UDP echo server, using 
-L<POE|POE>. The component encapsulates a class which may be used to implement further RFC protocols.
+L<POE>. The component encapsulates a class which may be used to implement further RFC protocols.
 
 =head1 CONSTRUCTOR
 
 =over
 
-=item spawn
+=item C<spawn>
 
 Takes a number of optional values: 
 
@@ -204,11 +204,11 @@ Takes a number of optional values:
 
 =over
 
-=item sockname_tcp
+=item C<sockname_tcp>
 
 Takes no arguments. Returns a list consisting of the socket port and address of the TCP listening socket as returned by Socket's sockaddr_in function.
 
-=item sockname_udp
+=item C<sockname_udp>
 
 Takes no arguments. Returns a list consisting of the socket port and address of the UDP listening socket as returned by Socket's sockaddr_in function.
 
@@ -218,7 +218,7 @@ Takes no arguments. Returns a list consisting of the socket port and address of 
 
 =over
 
-=item shutdown
+=item C<shutdown>
 
 Takes no arguments. Shuts down the component gracefully, terminating all listeners and disconnecting all connected clients.
 
@@ -234,15 +234,18 @@ Chris 'BinGOs' Williams, <chris@bingosnet.co.uk>
 
 =head1 LICENSE
 
-Copyright (C) Chris Williams
+Copyright E<copy> Chris Williams
 
 This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
 =head1 SEE ALSO
 
-L<POE|POE>
-L<POE::Session|POE::Session>
-L<POE::Wheel::SocketFactory|POE::Wheel::SocketFactory>
+L<POE>
+
+L<POE::Session>
+
+L<POE::Wheel::SocketFactory>
+
 L<http://www.faqs.org/rfcs/rfc862.html>
 
 =cut

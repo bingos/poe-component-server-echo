@@ -1,6 +1,9 @@
 POE::Component::Server::Echo
 ============================
 
+1.64	Thu May 21 10:37:43 BST 2009
+	- Makefile.PL: auto_license, auto_provides and githubmeta
+
 1.62	Sat Jun 28 09:28:35 BST 2008
 	- Added LICENSE information.
 
