@@ -9,6 +9,8 @@
 
 package POE::Component::Server::Echo;
 
+#ABSTRACT: A POE component that implements an RFC 862 Echo server.
+
 use strict;
 use warnings;
 use POE qw( Wheel::SocketFactory Wheel::ReadWrite Driver::SysRW
@@ -16,12 +18,9 @@ use POE qw( Wheel::SocketFactory Wheel::ReadWrite Driver::SysRW
 use Carp;
 use Socket;
 use IO::Socket::INET;
-use vars qw($VERSION);
 
 use constant DATAGRAM_MAXLEN => 1024;
 use constant DEFAULT_PORT => 7;
-
-$VERSION = '1.64';
 
 sub spawn {
   my $package = shift;
@@ -38,7 +37,7 @@ sub spawn {
   $self->{CONFIG} = \%parms;
 
   POE::Session->create(
-	object_states => [ 
+	object_states => [
 		$self => { _start => '_server_start',
 			   _stop  => '_server_stop',
 			   shutdown => '_server_close' },
@@ -46,7 +45,7 @@ sub spawn {
 			  ],
 	( ref $parms{'options'} eq 'HASH' ? ( options => $parms{'options'} ) : () ),
   );
-  
+
   return $self;
 }
 
@@ -54,7 +53,7 @@ sub _server_start {
   my ($kernel,$self) = @_[KERNEL,OBJECT];
 
   $kernel->alias_set( $self->{CONFIG}->{Alias} );
-  
+
   if ( $self->{CONFIG}->{tcp} ) {
     $self->{Listener} = POE::Wheel::SocketFactory->new(
       ( defined ( $self->{CONFIG}->{BindAddress} ) ? ( BindAddress => $self->{CONFIG}->{BindAddress} ) : () ),
@@ -159,12 +158,9 @@ sub sockname_udp {
   return sockaddr_in( getsockname $self->{udp_socket} );
 }
 
-1;
-__END__
+qq[ECHO! ECHO...ECHO...ECHO...ECHO...ECHO...ECHO...ECHo...ECho...Echo...echo];
 
-=head1 NAME
-
-POE::Component::Server::Echo - A POE component that implements an RFC 862 Echo server.
+=pod
 
 =head1 SYNOPSIS
 
@@ -179,7 +175,7 @@ POE::Component::Server::Echo - A POE component that implements an RFC 862 Echo s
 
 =head1 DESCRIPTION
 
-POE::Component::Server::Echo implements a RFC 862 L<http://www.faqs.org/rfcs/rfc862.html> TCP/UDP echo server, using 
+POE::Component::Server::Echo implements a RFC 862 L<http://www.faqs.org/rfcs/rfc862.html> TCP/UDP echo server, using
 L<POE>. The component encapsulates a class which may be used to implement further RFC protocols.
 
 =head1 CONSTRUCTOR
@@ -188,7 +184,7 @@ L<POE>. The component encapsulates a class which may be used to implement furthe
 
 =item C<spawn>
 
-Takes a number of optional values: 
+Takes a number of optional values:
 
   "Alias", the kernel alias that this component is to be blessed with; 
   "BindAddress", the address on the local host to bind to, 
@@ -227,16 +223,6 @@ Takes no arguments. Shuts down the component gracefully, terminating all listene
 =head1 BUGS
 
 Report any bugs through L<http://rt.cpan.org/>.
-
-=head1 AUTHOR
-
-Chris 'BinGOs' Williams, <chris@bingosnet.co.uk>
-
-=head1 LICENSE
-
-Copyright E<copy> Chris Williams
-
-This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
 =head1 SEE ALSO
 

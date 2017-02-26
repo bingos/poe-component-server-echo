@@ -1,8 +1,0 @@
-POE::Component::Server::Echo
-============================
-
-A very simple component to implement RFC 862.
-
-Only supports TCP connections.
-
->;o)
